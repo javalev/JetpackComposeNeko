@@ -3,37 +3,34 @@ package com.example.jetpackcomposeneko
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.material.Text
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import com.example.jetpackcomposeneko.ui.theme.GrayBackground
+import com.example.jetpackcomposeneko.ui.theme.MyRow
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            LazyRow(modifier = Modifier.fillMaxSize()) {
+            LazyRow(modifier = Modifier
+                .fillMaxWidth()
+                .background(GrayBackground)) {
                 itemsIndexed(
                     listOf(
-                        "OBJECT1",
-                        "OBJECT2",
-                        "OBJECT3",
-                        "OBJECT4",
-                        "OBJECT5",
-                        "OBJECT6",
-                        "OBJECT7",
-                        12345,
-                        6789,
-                        0
+                        ItemRowModel(R.drawable.image1, "Kurt"),
+                        ItemRowModel(R.drawable.image2, "Minor Threat"),
+                        ItemRowModel(R.drawable.image3, "Death"),
+                        ItemRowModel(R.drawable.image4, "Metallica"),
+                        ItemRowModel(R.drawable.image2, "Minor Threat"),
+                        ItemRowModel(R.drawable.image1, "Kurt"),
+                        ItemRowModel(R.drawable.image3, "Death"),
+                        ItemRowModel(R.drawable.image4, "Metallica")
                     )
                 ) { index, item ->
-                    Text(
-                        text = item.toString(), fontSize = 25.sp, modifier = Modifier.padding(8.dp)
-                    )
+                    MyRow(itemRowModel = item)
                 }
             }
         }
